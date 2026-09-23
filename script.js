@@ -55,9 +55,66 @@ document.querySelector("#backdrop").onclick=closeCart;
 document.querySelector("#checkout").onclick=openModal;
 document.querySelector("#closeModal").onclick=()=>document.querySelector("#modalBackdrop").classList.remove("show");
 document.querySelector("#modalBackdrop").addEventListener("click",e=>{if(e.target.id==="modalBackdrop")e.currentTarget.classList.remove("show")});
-document.querySelector("#payButton").onclick=()=>{
-  const email=document.querySelector("#email").value.trim();
-  if(!email || !email.includes("@")){alert("Digite um e-mail válido.");return}
-  alert("Checkout de demonstração. No site real, este botão deve abrir o pagamento do gateway e o backend deve liberar o pack somente após confirmação.");
+document.querySelector("#payButton").onclick = async () => {
+  const email = document.querySelector("#email").value.trim();
+
+  if (!email || !email.includes("@")) {
+    alert("Digite um e-mail válido.");
+    return;
+  }
+
+  const itens = cart
+    .map(id => products.find(p => p.id === id))
+    .filter(Boolean);
+
+  if (!itens.length) {
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  const mapa = new Map();
+
+  itens.forEach(item => {
+    if (!mapa.has(item.id)) {
+      mapa.set(item.id, {
+        title: item.name,
+        quantity: 1,
+        unit_price: Number(item.price)
+      });
+    } else {
+      mapa.get(item.id).quantity++;
+    }
+  });
+
+  try {
+    const resposta = await fetch("/api/create-preference", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        items: Array.from(mapa.values())
+      })
+    });
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+      alert(dados.error || "Não foi possível iniciar o pagamento.");
+      return;
+    }
+
+    if (!dados.init_point) {
+      alert("O Mercado Pago não retornou o endereço do pagamento.");
+      return;
+    }
+
+    window.location.href = dados.init_point;
+
+  } catch (erro) {
+    console.error(erro);
+    alert("Erro ao conectar com o Mercado Pago.");
+  }
 };
 renderProducts();renderCart();
