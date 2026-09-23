@@ -25,3 +25,4 @@ Pode hospedar o front-end em GitHub Pages, Vercel ou Netlify.
 
 ## Próximo passo
 Substituir os produtos de exemplo pelas imagens, nomes, preços e arquivos ZIP reais dos seus packs e conectar um gateway de pagamento.
+Atualização do Site
