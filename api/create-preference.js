@@ -1,13 +1,17 @@
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Método não permitido" });
+    return res.status(405).json({
+      error: "Método não permitido"
+    });
   }
 
   try {
     const { items, email } = req.body || {};
 
     if (!items || !Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ error: "Carrinho vazio" });
+      return res.status(400).json({
+        error: "Carrinho vazio"
+      });
     }
 
     const preference = {
@@ -34,7 +38,7 @@ module.exports = async function handler(req, res) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        "Authorization": Bearer ${process.env.MP_ACCESS_TOKEN}
+          "Authorization": Bearer ${process.env.MP_ACCESS_TOKEN}
         },
         body: JSON.stringify(preference)
       }
@@ -54,8 +58,10 @@ module.exports = async function handler(req, res) {
     });
 
   } catch (error) {
+    console.error("Erro Mercado Pago:", error);
+
     return res.status(500).json({
       error: "Erro interno no servidor"
     });
   }
-}
+};
