@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": Bearer ${process.env.MP_ACCESS_TOKEN}
+        "Authorization": Bearer ${process.env.MP_ACCESS_TOKEN}
         },
         body: JSON.stringify(preference)
       }
