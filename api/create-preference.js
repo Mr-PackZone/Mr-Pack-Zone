@@ -38,7 +38,7 @@ module.exports = async function handler(req, res) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.MP_ACCESS_TOKEN}
+          "Authorization": "Bearer " + process.env.MP_ACCESS_TOKEN
         },
         body: JSON.stringify(preference)
       }
@@ -47,6 +47,8 @@ module.exports = async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
+      console.error("Erro retornado pelo Mercado Pago:", data);
+
       return res.status(response.status).json({
         error: data.message || "Erro ao criar pagamento",
         details: data
