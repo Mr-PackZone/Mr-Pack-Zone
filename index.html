@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PackZone — packs de figurinhas para WhatsApp.">
+  <title>PackZone — Figurinhas para WhatsApp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark">PZ</span>
+      <span>Pack<span>Zone</span></span>
+    </a>
+    <nav>
+      <a href="#packs">Packs</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#como-funciona">Como funciona</a>
+    </nav>
+    <button class="cart-button" id="openCart">🛒 <span>Carrinho</span> <b id="cartCount">0</b></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">PACKZONE</div>
+        <h1>AS MELHORES<br><span>FIGURINHAS.</span></h1>
+        <p>Escolha seu pack, pague online e receba o acesso de forma rápida.</p>
+        <a class="primary" href="#packs">Ver packs</a>
+      </div>
+      <div class="hero-art">
+        <div class="bubble">😂</div>
+        <div class="sticker-card">PACK<br><strong>ZONE</strong></div>
+        <div class="mini m1">🔥</div>
+        <div class="mini m2">🤣</div>
+        <div class="mini m3">💀</div>
+      </div>
+    </section>
+
+    <section class="ticker">
+      <span>ENTREGA DIGITAL</span><i>✦</i><span>PAGAMENTO ONLINE</span><i>✦</i><span>ACESSO RÁPIDO</span><i>✦</i><span>PACKS PARA WHATSAPP</span>
+    </section>
+
+    <section id="packs" class="catalog">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">VITRINE PACKZONE</div>
+          <h2>ESCOLHA SEU <span>PACK.</span></h2>
+          <p>Centenas de figurinhas para deixar suas conversas muito mais divertidas.</p>
+        </div>
+      </div>
+
+      <div id="categorias" class="filters">
+        <button class="filter active" data-category="Todos">Todos</button>
+        <button class="filter" data-category="Combos">Combos</button>
+        <button class="filter" data-category="Humor">Humor</button>
+        <button class="filter" data-category="Frases">Frases</button>
+        <button class="filter" data-category="Cultura Pop">Cultura Pop</button>
+      </div>
+
+      <div class="search-row">
+        <span>⌕</span>
+        <input id="search" type="search" placeholder="Buscar pack...">
+      </div>
+
+      <div id="products" class="grid"></div>
+    </section>
+
+    <section id="como-funciona" class="steps">
+      <div class="eyebrow">COMO FUNCIONA</div>
+      <h2>DO PAGAMENTO AO SEU <span>PACK.</span></h2>
+      <div class="step-grid">
+        <article><b>01</b><h3>Escolha</h3><p>Selecione os packs que você quer.</p></article>
+        <article><b>02</b><h3>Pague</h3><p>Finalize o pedido pelo checkout.</p></article>
+        <article><b>03</b><h3>Receba</h3><p>Após a confirmação, o sistema libera seu acesso digital.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand"><span class="brand-mark">PZ</span><span>Pack<span>Zone</span></span></div>
+    <p>© 2026 PackZone. Todos os direitos reservados.</p>
+  </footer>
+
+  <div class="drawer-backdrop" id="backdrop"></div>
+  <aside class="cart" id="cart">
+    <div class="cart-head"><h2>Seu carrinho</h2><button id="closeCart">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+    <button class="checkout" id="checkout">Ir para pagamento</button>
+  </aside>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <button class="modal-close" id="closeModal">×</button>
+      <div class="eyebrow">CHECKOUT</div>
+      <h2>Finalizar pedido</h2>
+      <p class="muted">Esta versão demonstra o fluxo. Para cobrar de verdade, conecte um gateway como Mercado Pago ou Stripe no backend.</p>
+      <label>Seu e-mail<input id="email" type="email" placeholder="voce@email.com"></label>
+      <div class="checkout-summary" id="checkoutSummary"></div>
+      <button class="checkout" id="payButton">Continuar para pagamento</button>
+      <small>O conteúdo digital só deve ser liberado após confirmação do pagamento pelo servidor.</small>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
